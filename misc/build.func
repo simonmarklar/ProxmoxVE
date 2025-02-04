@@ -2,7 +2,7 @@
 # Author: tteck (tteckster)
 # Co-Author: MickLesk
 # Co-Author: michelroegl-brunner
-# License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
+# License: MIT | https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/LICENSE
 
 variables() {
   NSAPP=$(echo ${APP,,} | tr -d ' ') # This function sets the NSAPP variable by converting the value of the APP variable to lowercase and removing any spaces.
@@ -13,7 +13,9 @@ variables() {
   METHOD="default"                   # sets the METHOD variable to "default", used for the API call.
   RANDOM_UUID="$(cat /proc/sys/kernel/random/uuid)" # generates a random UUID and sets it to the RANDOM_UUID variable.
 }
-source <(curl -s https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/api.func)
+# source <(curl -s https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/api.func)
+# shellcheck disable=SC1090
+source <(curl -s https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/misc/api.func)
 
 # This function sets various color variables using ANSI escape codes for formatting text in the terminal.
 color() {
@@ -240,7 +242,7 @@ update_motd_ip() {
 # Function to download & save header files
 get_header() {
   local app_name=$(echo ${APP,,} | tr -d ' ') 
-  local header_url="https://github.com/community-scripts/ProxmoxVE/raw/main/ct/headers/${app_name}"
+  local header_url="https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/ct/headers/${app_name}"
   local local_header_path="/usr/local/community-scripts/headers/${app_name}"
 
   mkdir -p "/usr/local/community-scripts/headers"
@@ -799,7 +801,7 @@ diagnostics_check(){
 
     if ! [ -f "/usr/local/community-scripts/diagnostics" ]; then
       if (whiptail --backtitle "Proxmox VE Helper Scripts" --title "DIAGNOSTICS" --yesno "Send Diagnostics of LXC Installation?\n\n(This only transmits data without user data, just RAM, CPU, LXC name, ...)" 10 58); then
-          cat <<EOF>/usr/local/community-scripts/diagnostics
+          cat <<EOF >/usr/local/community-scripts/diagnostics
 DIAGNOSTICS=yes
 
 #This file is used to store the diagnostics settings for the Community-Scripts API.
@@ -851,6 +853,7 @@ DIAGNOSTICS=no
 #"status"
 #If you have any concerns, please review the source code at /misc/build.func
 EOF
+
       DIAGNOSTICS="no"
     fi
   else
@@ -1020,10 +1023,11 @@ build_container() {
   TEMP_DIR=$(mktemp -d)
   pushd $TEMP_DIR >/dev/null
   if [ "$var_os" == "alpine" ]; then
-    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/alpine-install.func)"
+    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/misc/alpine-install.func)"
   else
-    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/install.func)"
+    export FUNCTIONS_FILE_PATH="$(curl -s https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/misc/install.func)"
   fi
+  # msg_info "Functions are from $FUNCTIONS_FILE_PATH"
   export RANDOM_UUID="$RANDOM_UUID"
   export CACHER="$APT_CACHER"
   export CACHER_IP="$APT_CACHER_IP"
@@ -1054,7 +1058,7 @@ build_container() {
     $PW
   "
   # This executes create_lxc.sh and creates the container and .conf file
-  bash -c "$(wget -qLO - https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/create_lxc.sh)" || exit
+  bash -c "$(wget -qLO - https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/ct/create_lxc.sh)" || exit
 
   LXC_CONFIG=/etc/pve/lxc/${CTID}.conf
   if [ "$CT_TYPE" == "0" ]; then
@@ -1106,6 +1110,7 @@ EOF
 
   # This starts the container and executes <app>-install.sh
   msg_info "Starting LXC Container"
+  msg_info "install url = https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/install/$var_install.sh"
   pct start "$CTID"
   msg_ok "Started LXC Container"
   if [ "$var_os" == "alpine" ]; then
@@ -1116,7 +1121,7 @@ http://dl-cdn.alpinelinux.org/alpine/latest-stable/community
 EOF'
     pct exec "$CTID" -- ash -c "apk add bash >/dev/null"
   fi
-  lxc-attach -n "$CTID" -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/install/$var_install.sh)" || exit
+  lxc-attach -n "$CTID" -- bash -c "$(wget -qLO - https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/install/$var_install.sh)" || exit
 
 }
 
@@ -1129,7 +1134,7 @@ description() {
     cat <<EOF
 <div align='center'>
   <a href='https://Helper-Scripts.com' target='_blank' rel='noopener noreferrer'>
-    <img src='https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/images/logo-81x112.png' alt='Logo' style='width:81px;height:112px;'/>
+    <img src='https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/misc/images/logo-81x112.png' alt='Logo' style='width:81px;height:112px;'/>
   </a>
 
   <h2 style='font-size: 24px; margin: 20px 0;'>${APP} LXC</h2>
