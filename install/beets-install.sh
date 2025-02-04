@@ -21,13 +21,14 @@ $STD apt-get install -y \
   sudo \
   mc \
   python3-venv \
+  python3-pip \
   pipx
 msg_ok "Installed Dependencies"
 
 LOCAL_IP="$(hostname -I | awk '{print $1}')"
-msg_info "Setting up dependencies"
-sudo pipx ensurepath --global
-
+msg_info "Configuring dependencies"
+pipx ensurepath
+msg_ok "Dependencies configured"
 
 
 # Create beets user

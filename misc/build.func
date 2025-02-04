@@ -1107,10 +1107,11 @@ EOF
       fi
     fi
   fi
+  msg_info "install url = https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/install/$var_install.sh"
+  msg_ok "install url"
 
   # This starts the container and executes <app>-install.sh
   msg_info "Starting LXC Container"
-  msg_info "install url = https://raw.githubusercontent.com/simonmarklar/ProxmoxVE/refs/heads/beets/install/$var_install.sh"
   pct start "$CTID"
   msg_ok "Started LXC Container"
   if [ "$var_os" == "alpine" ]; then

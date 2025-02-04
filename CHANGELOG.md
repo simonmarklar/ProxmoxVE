@@ -23,23 +23,25 @@ Do not break established syntax in this file, as it is automatically updated by 
 
 ### 💥 Breaking Changes
 
-- Proxmox Backup Server Renaming and Update fix [@thost96](https://github.com/thost96) ([#2012](https://github.com/community-scripts/ProxmoxVE/pull/2012))
+- Rename & Optimize: Proxmox Backup Server (Renaming & Update fix) [@thost96](https://github.com/thost96) ([#2012](https://github.com/community-scripts/ProxmoxVE/pull/2012))
 
 ### 🚀 Updated Scripts
 
+- Fix: Authentik - Remove deprecated GO-Remove in Footer [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#2020](https://github.com/community-scripts/ProxmoxVE/pull/2020))
+- Fix: Authentik Fix wrong HDD Size [@thost96](https://github.com/thost96) ([#2001](https://github.com/community-scripts/ProxmoxVE/pull/2001))
+- Fix: Tandoor - node Version [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#2010](https://github.com/community-scripts/ProxmoxVE/pull/2010))
+- Fix actual update - missing hidden files, downloaded release cleanup [@maciejmatczak](https://github.com/maciejmatczak) ([#2027](https://github.com/community-scripts/ProxmoxVE/pull/2027))
 - Fix Script: post-pmg-install.sh [@thost96](https://github.com/thost96) ([#2022](https://github.com/community-scripts/ProxmoxVE/pull/2022))
-- Update authentik-install.sh [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#2020](https://github.com/community-scripts/ProxmoxVE/pull/2020))
-- Update tandoor-install.sh, Fix node Version [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#2010](https://github.com/community-scripts/ProxmoxVE/pull/2010))
-- Update Script: Authentik Fix wrong HDD Size [@thost96](https://github.com/thost96) ([#2001](https://github.com/community-scripts/ProxmoxVE/pull/2001))
 - Fix Tianji: Add heap-space value for nodejs [@MickLesk](https://github.com/MickLesk) ([#2011](https://github.com/community-scripts/ProxmoxVE/pull/2011))
 - Fix: Ghost LXC - Use Node20 [@MickLesk](https://github.com/MickLesk) ([#2006](https://github.com/community-scripts/ProxmoxVE/pull/2006))
 
 ### 🌐 Website
 
-- [API] Masiv update to api [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#1990](https://github.com/community-scripts/ProxmoxVE/pull/1990))
+- [API] Massive update to api (remove many, optimize website for users) [@michelroegl-brunner](https://github.com/michelroegl-brunner) ([#1990](https://github.com/community-scripts/ProxmoxVE/pull/1990))
 
 ### 🧰 Maintenance
 
+- Fix header comments on contributor templates [@tremor021](https://github.com/tremor021) ([#2029](https://github.com/community-scripts/ProxmoxVE/pull/2029))
 - [Fix]: Headername of Proxmox-Datacenter-Manager not in CamelCase [@MickLesk](https://github.com/MickLesk) ([#2017](https://github.com/community-scripts/ProxmoxVE/pull/2017))
 - [Fix] Header breaks at long title - add width for figlet github action [@MickLesk](https://github.com/MickLesk) ([#2015](https://github.com/community-scripts/ProxmoxVE/pull/2015))
 
